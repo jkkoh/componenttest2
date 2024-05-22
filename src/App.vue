@@ -1,26 +1,34 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup>
+import{ ref } from 'vue'
+import BlogPost from './components/BlogPost.vue'
+import SecondPost from './components/SecondPost.vue'
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+const posts = ref([
+  { id: 1, title: 'Vue 12345' },
+  { id: 2, title: 'Vue aaaaaa' } ,
+  { id: 3, title: 'Vue cccccccc' }  
+])
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const phobs = ref([
+  { id: 1, second: 'Vue eeeee' },
+  { id: 2, second: 'Vue fffff' } ,
+  { id: 3, second: 'Vue ggggg' }  
+])
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <h2>first post</h2> <!--yes script setup-->
+  <BlogPost 
+    v-for="post in posts" 
+    :key="post.id" 
+    :title="post.title"
+  ></BlogPost>
+<br/>
+<h2>second post</h2> <!--no script setup-->
+  <SecondPost
+    v-for="phob in phobs" 
+    :key="phob.id" 
+    :second="phob.second"
+  ></SecondPost>
+</template>
+
